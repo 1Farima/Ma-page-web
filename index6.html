@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Prêt pour la Marmite — Légumes frais & secs (Mali)</title>
+    <meta name="description" content="Prêt pour la Marmite — Vente de légumes frais et secs. Produits locaux, bio ou non-bio. Commandez en FCFA, livraison et retrait." />
+    <meta name="theme-color" content="#8FB56B" />
+    <style>
+        :root{
+            --green:#7BB26A;
+            --dark-green:#4C7B3A;
+            --orange:#F29C4C;
+            --beige:#F6EFE3;
+            --brown:#A67C52;
+            --muted:#6B6B6B;
+            --max-width:1100px;
+            --radius:10px;
+            --shadow: 0 6px 18px rgba(34,34,34,0.08);
+            --glass: rgba(255,255,255,0.6);
+        }
+        *{box-sizing:border-box}
+        body{
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            margin:0;
+            background: linear-gradient(180deg, #fffefc 0%, #f8faf4 100%);
+            color:#222;
+            -webkit-font-smoothing:antialiased;
+        }
+        .wrap{max-width:var(--max-width);margin:0 auto;padding:18px;}
+        header{
+            display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;
+        }
+        .brand{
+            display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit;
+        }
+        .logo{
+            width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--green),var(--orange));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;
+            box-shadow:var(--shadow);
+        }
+        nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+        nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:8px;}
+        nav a:hover{background:var(--beige);color:#222}
+        .actions{display:flex;gap:10px;align-items:center}
+        .btn{
+            background:var(--green);color:white;padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:600;
+        }
+        .btn.alt{background:var(--orange)}
+        .hero{
+            display:grid;grid-template-columns:1fr 420px;gap:20px;align-items:center;margin:18px 0;padding:22px;border-radius:14px;background:linear-gradient(180deg,rgba(127,188,109,0.09),rgba(242,156,76,0.02));box-shadow:var(--shadow);
+        }
+        .hero-left h1{margin:0 0 8px;font-size:28px;color:var(--dark-green)}
+        .hero-left p{margin:0 0 16px;color:#444}
+        .cta-row{display:flex;gap:10px;align-items:center}
+        .hero-banner{
+            width:100%;height:260px;border-radius:12px;background-image:url('https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=123456');background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;
+        }
+        .hero-banner::after{
+            content:"";position:absolute;inset:0;border-radius:12px;background:linear-gradient(180deg,transparent 40%, rgba(0,0,0,0.25));
+        }
+        .values{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
+        .value{background:var(--beige);padding:10px 12px;border-radius:10px;color:#3b3b3b;font-weight:600}
+        /* Products */
+        .section{margin:28px 0}
+        .section h2{margin:0 0 8px;color:var(--dark-green)}
+        .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+        .filter, .search{padding:8px;border-radius:8px;border:1px solid #e6e6e6;background:white}
+        .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+        .card{background:white;border-radius:12px;padding:12px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+        .card img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+        .card h3{margin:8px 0 4px;font-size:16px}
+        .meta{font-size:13px;color:var(--muted);margin-bottom:8px}
+        .card .bottom{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px}
+        .pill{padding:6px 8px;background:var(--beige);border-radius:999px;font-size:12px}
+        /* Cart */
+        .cart-btn{position:relative}
+        .cart-count{position:absolute;top:-6px;right:-6px;background:var(--orange);color:white;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+        /* Forms */
+        form{display:flex;flex-direction:column;gap:8px}
+        input[type="text"],input[type="email"],input[type="tel"],textarea,select{padding:10px;border-radius:8px;border:1px solid #e6e6e6;background:white}
+        textarea{min-height:100px;resize:vertical}
+        .two{display:flex;gap:10px}
+        .two > *{flex:1}
+        /* Footer */
+        footer{margin-top:28px;padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(166,124,82,0.06),rgba(127,188,109,0.03));display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+        .socials a{margin-right:8px;text-decoration:none;color:var(--muted)}
+        .small{font-size:13px;color:var(--muted)}
+        /* Responsive */
+        @media (max-width:980px){
+            .hero{grid-template-columns:1fr;gap:12px}
+            .grid{grid-template-columns:repeat(2,1fr)}
+            .hero-banner{height:200px}
+        }
+        @media (max-width:620px){
+            nav{display:none}
+            .grid{grid-template-columns:1fr}
+            .wrap{padding:12px}
+            .brand .logo{width:48px;height:48px}
+        }
+        /* modal */
+        .modal{position:fixed;inset:0;background:rgba(0,0,0,0.4);display:none;align-items:center;justify-content:center;padding:18px}
+        .modal .panel{background:white;padding:18px;border-radius:12px;max-width:620px;width:100%}
+        .tag{font-weight:700;color:var(--green);font-size:13px}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <a class="brand" href="#">
+                <div class="logo">Pm</div>
+                <div>
+                    <div style="font-weight:800;color:var(--dark-green)">Prêt pour la Marmite</div>
+                    <div style="font-size:13px;color:var(--muted)">Du champ à votre cuisine • Mali</div>
+                </div>
+            </a>
+
+            <nav>
+                <a href="#accueil">Accueil</a>
+                <a href="#produits">Nos produits</a>
+                <a href="#commander">Commander</a>
+                <a href="#apropos">À propos</a>
+                <a href="#contact">Contact</a>
+                <a href="#blog">Blog / Recettes</a>
+            </nav>
+
+            <div class="actions">
+                <button class="btn" id="search-toggle">Rechercher</button>
+                <button class="btn alt cart-btn" id="open-cart">Panier <span class="cart-count" id="cart-count">0</span></button>
+            </div>
+        </header>
+
+        <main>
+            <section id="accueil" class="hero">
+                <div class="hero-left">
+                    <h1>Du champ à votre cuisine !</h1>
+                    <p>Produits frais et secs cultivés au Mali, proches des producteurs. Qualité, fraîcheur et goût naturel pour vos repas en famille.</p>
+                    <div class="cta-row">
+                        <button class="btn" onclick="scrollToSection('produits')">Commander maintenant</button>
+                        <a href="#apropos" style="align-self:center;color:var(--muted);text-decoration:none">En savoir plus</a>
+                    </div>
+                    <div class="values" aria-hidden="true">
+                        <div class="value">Frais</div>
+                        <div class="value">Local</div>
+                        <div class="value">Sain</div>
+                        <div class="value">Traçable</div>
+                    </div>
+
+                    <p style="margin-top:12px;color:#555">Produit du mois : <span class="tag">Tomate locale - 300 FCFA/kg</span> • Promo légumes frais saisonniers</p>
+                </div>
+
+                <div>
+                    <div class="hero-banner" role="img" aria-label="Image de légumes frais et secs"></div>
+                    <div style="display:flex;justify-content:space-between;margin-top:10px;">
+                        <div style="font-size:13px;color:var(--muted)">Farima Sissoko • <a href="mailto:sissokofarima1@gmail.com">sissokofarima1@gmail.com</a></div>
+                        <div style="font-size:13px;color:var(--muted)">Mali • Importance de l'agriculture locale</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products -->
+            <section id="produits" class="section">
+                <h2>Nos produits</h2>
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+                    <div class="filters">
+                        <select id="filter-category" class="filter" aria-label="Filtrer par type">
+                            <option value="">Tous types</option>
+                            <option value="racines">Racines</option>
+                            <option value="feuilles">Feuilles</option>
+                            <option value="fruits">Fruits</option>
+                        </select>
+                        <select id="filter-status" class="filter" aria-label="Filtrer par disponibilité">
+                            <option value="">Tous</option>
+                            <option value="disponible">Disponible</option>
+                            <option value="rupture">Rupture</option>
+                        </select>
+                        <label style="display:flex;align-items:center;gap:6px;padding:8px;background:var(--beige);border-radius:8px;font-size:13px">
+                            <input type="checkbox" id="filter-bio" /> Bio
+                        </label>
+                        <input id="search" class="search" placeholder="Rechercher un produit..." />
+                    </div>
+
+                    <div style="display:flex;gap:8px">
+                        <button class="btn" onclick="applyFilters()">Appliquer</button>
+                        <button class="btn alt" onclick="resetFilters()">Réinitialiser</button>
+                    </div>
+                </div>
+
+                <div id="products-grid" class="grid" style="margin-top:12px">
+                    <!-- JS populates -->
+                </div>
+            </section>
+
+            <!-- Commander -->
+            <section id="commander" class="section">
+                <h2>Commander en ligne</h2>
+                <div style="display:grid;grid-template-columns:1fr 360px;gap:16px">
+                    <div>
+                        <form id="order-form">
+                            <div class="two">
+                                <input type="text" name="nom" placeholder="Nom complet" required />
+                                <input type="tel" name="phone" placeholder="Téléphone" required />
+                            </div>
+                            <input type="text" name="adresse" placeholder="Adresse de livraison (rue, quartier)" required />
+                            <label>Produits sélectionnés (votre panier)</label>
+                            <div id="order-items" style="min-height:80px;padding:10px;border-radius:8px;border:1px dashed #e6e6e6;background:white"></div>
+
+                            <label>Mode de paiement</label>
+                            <select name="paiement" required>
+                                <option value="momo">Mobile Money</option>
+                                <option value="carte">Carte bancaire</option>
+                                <option value="paypal">PayPal</option>
+                            </select>
+
+                            <button class="btn" type="submit">Confirmer la commande</button>
+                        </form>
+                        <div id="order-feedback" style="margin-top:8px;color:var(--muted)"></div>
+                    </div>
+
+                    <aside style="background:linear-gradient(180deg,#fff,#fbf6ee);padding:14px;border-radius:12px;box-shadow:var(--shadow)">
+                        <h3 style="margin-top:0">Votre panier</h3>
+                        <div id="cart-list" style="min-height:140px"></div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+                            <div><strong>Total:</strong> <span id="cart-total">0</span> FCFA</div>
+                            <button class="btn alt" onclick="checkout()">Commander</button>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <!-- About -->
+            <section id="apropos" class="section">
+                <h2>À propos de nous</h2>
+                <div style="display:flex;gap:14px;flex-wrap:wrap">
+                    <div style="flex:1;min-width:260px">
+                        <p><strong>Prêt pour la Marmite</strong> est une entreprise familiale basée au Mali, dédiée à la culture et la commercialisation de légumes frais et secs. Nous travaillons avec des agriculteurs locaux pour garantir traçabilité, qualité et fraîcheur.</p>
+                        <p>Notre engagement : soutenir l'agriculture malienne, encourager les pratiques durables et offrir des produits sains à votre table.</p>
+                    </div>
+                    <div style="flex:1;min-width:260px">
+                        <p><strong>Équipe & champs</strong><br/>Photos de l'équipe, du champ et du stockage (exemples).</p>
+                        <div style="display:flex;gap:8px;flex-wrap:wrap">
+                            <div style="width:120px;height:80px;background:#efe7db;border-radius:8px"></div>
+                            <div style="width:120px;height:80px;background:#efe7db;border-radius:8px"></div>
+                            <div style="width:120px;height:80px;background:#efe7db;border-radius:8px"></div>
+                        </div>
+                        <p style="margin-top:8px"><em>Vidéo courte de la récolte (optionnel)</em></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact -->
+            <section id="contact" class="section">
+                <h2>Contact</h2>
+                <div style="display:grid;grid-template-columns:1fr 360px;gap:14px">
+                    <div>
+                        <form id="contact-form">
+                            <input type="text" name="nom" placeholder="Nom" required />
+                            <input type="email" name="email" placeholder="Email" required />
+                            <textarea name="message" placeholder="Votre message"></textarea>
+                            <button class="btn" type="submit">Envoyer</button>
+                        </form>
+                        <div style="margin-top:12px;color:var(--muted)">
+                            <div>Téléphone : <a href="tel:+22379851441">+223 79 85 14 41</a></div>
+                            <div>Email : <a href="mailto:sissokofarima1@gmail.com">sissokofarima1@gmail.com</a></div>
+                            <div style="margin-top:8px">Visitez-nous : </div>
+                            <iframe title="Carte Mali" src="https://www.google.com/maps?q=Bamako Magambougou,+Mali&output=embed" style="width:100%;height:180px;border:0;border-radius:8px;margin-top:8px"></iframe>
+                        </div>
+                    </div>
+
+                    <aside style="background:linear-gradient(180deg,#fff,#fbf6ee);padding:14px;border-radius:12px;box-shadow:var(--shadow)">
+                        <h3>Abonnez-vous</h3>
+                        <p class="small">Recevez recettes et promos</p>
+                        <div style="display:flex;gap:8px">
+                            <input id="news-email" type="email" placeholder="Votre email" style="flex:1;padding:10px;border-radius:8px;border:1px solid #e6e6e6" />
+                            <button class="btn alt" onclick="subscribe()">S'abonner</button>
+                        </div>
+                        <div style="margin-top:12px">
+                            <h4 style="margin:0 0 6px">Réseaux sociaux</h4>
+                            <div class="socials">
+                                <a href="#" target="_blank">Facebook</a> •
+                                <a href="#" target="_blank">Instagram</a> •
+                                <a href="#" target="_blank">WhatsApp</a>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <!-- Blog -->
+            <section id="blog" class="section">
+                <h2>Blog / Recettes</h2>
+                <p style="color:var(--muted)">Articles récents : recettes avec vos légumes, astuces de conservation, bienfaits pour la santé.</p>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:10px">
+                    <article style="background:white;padding:12px;border-radius:10px;box-shadow:var(--shadow)">
+                        <h3 style="margin:0 0 6px">Recette : Sauce arachide aux légumes</h3>
+                        <p class="small" style="margin:0">Un classique malien, facile et nutritif.</p>
+                    </article>
+                    <article style="background:white;padding:12px;border-radius:10px;box-shadow:var(--shadow)">
+                        <h3 style="margin:0 0 6px">Conserver les légumes frais</h3>
+                        <p class="small" style="margin:0">Conseils pour prolonger la fraîcheur.</p>
+                    </article>
+                    <article style="background:white;padding:12px;border-radius:10px;box-shadow:var(--shadow)">
+                        <h3 style="margin:0 0 6px">Pourquoi privilégier local ?</h3>
+                        <p class="small" style="margin:0">Impact sur l'économie et la nutrition.</p>
+                    </article>
+                </div>
+            </section>
+        </main>
+<!-- Témoignages clients -->
+<div class="testimonials">
+    <h3>Témoignages clients</h3>
+    <div class="testimonials-wrap">
+        <div class="testimonial-card">
+            <div class="testimonial-avatar">FD</div>
+            <div class="testimonial-body">
+                <div class="stars">★★★★★</div>
+                <strong>Fatoumata Diallo</strong> <small>— Bamako</small>
+                <p>Qualité exceptionnelle et produits très frais. Livraison rapide et service très aimable.</p>
+            </div>
+        </div>
+
+        <div class="testimonial-card">
+            <div class="testimonial-avatar">AM</div>
+            <div class="testimonial-body">
+                <div class="stars">★★★★☆</div>
+                <strong>Adama Maïga</strong> <small>— Ségou</small>
+                <p>J'aime les légumes locaux et les prix sont corrects. Très satisfaite des légumes secs.</p>
+            </div>
+        </div>
+
+        <div class="testimonial-card">
+            <div class="testimonial-avatar">KH</div>
+            <div class="testimonial-body">
+                <div class="stars">★★★★★</div>
+                <strong>Kadiatou Haidara</strong> <small>— Koulikoro</small>
+                <p>Produits frais, goût excellent. On sent l'engagement pour l'agriculture locale du Mali.</p>
+            </div>
+        </div>
+
+        <div class="testimonial-card">
+            <div class="testimonial-avatar">BM</div>
+            <div class="testimonial-body">
+                <div class="stars">★★★★★</div>
+                <strong>Babacar Maiga</strong> <small>— Tombouctou</small>
+                <p>Service client réactif et panier bien préparé. Je recommande pour les légumes de saison.</p>
+            </div>
+        </div>
+
+        <div class="testimonial-controls">
+            <button class="testimonial-btn prev" aria-label="Précédent">‹</button>
+            <button class="testimonial-btn next" aria-label="Suivant">›</button>
+        </div>
+    </div>
+</div>
+
+<!-- Script simple pour faire défiler les cartes (déplace les éléments dans le DOM) -->
+<script>
+    (function(){
+        const wrap = document.querySelector('.testimonials-wrap');
+        if (!wrap) return;
+        const btnPrev = wrap.querySelector('.testimonial-btn.prev');
+        const btnNext = wrap.querySelector('.testimonial-btn.next');
+
+        btnNext && btnNext.addEventListener('click', () => {
+            const first = wrap.querySelector('.testimonial-card');
+            if (first) wrap.appendChild(first);
+        });
+
+        btnPrev && btnPrev.addEventListener('click', () => {
+            const cards = wrap.querySelectorAll('.testimonial-card');
+            const last = cards[cards.length - 1];
+            if (last) wrap.insertBefore(last, cards[0]);
+        });
+    })();
+</script>
+
+        <footer>
+            <div>
+                <div style="font-weight:800;color:var(--dark-green)">Prêt pour la Marmite</div>
+                <div class="small">© <span id="year"></span> • Mentions légales • Politique de confidentialité</div>
+            </div>
+
+            <div style="text-align:right">
+                <div class="small">Horaires : Lun-Sam 7:00 - 18:00</div>
+                <div class="socials" style="margin-top:6px">
+                    <a href="#" target="_blank">Facebook</a>
+                    <a href="#" target="_blank">Instagram</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="panel">
+            <h3 id="modal-title">Panier</h3>
+            <div id="modal-body"></div>
+            <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:12px">
+                <button class="btn alt" onclick="closeModal()">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Product data (sample). Prices in FCFA.
+        const PRODUCTS = [
+            { id:1, name:'Tomate locale', type:'fruits', category:'frais', bio:true, price:300, avail:'disponible', img:'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=1' },
+            { id:2, name:'Oignon', type:'racines', category:'frais', bio:false, price:200, avail:'disponible', img:'https://images.unsplash.com/photo-1604908177522-4b1e40f7c23b?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=2' },
+            { id:3, name:'Aubergine', type:'fruits', category:'frais', bio:false, price:250, avail:'disponible', img:'https://images.unsplash.com/photo-1447175008436-054170c2e979?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=3' },
+            { id:4, name:'Haricot sec', type:'feuilles', category:'secs', bio:true, price:800, avail:'disponible', img:'https://images.unsplash.com/photo-1562097830-3f7f1a05a2f2?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=4' },
+            { id:5, name:'Patate douce', type:'racines', category:'frais', bio:false, price:350, avail:'disponible', img:'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=5' },
+            { id:6, name:'Pois chiche sec', type:'feuilles', category:'secs', bio:false, price:900, avail:'rupture', img:'https://images.unsplash.com/photo-1605817919021-2d8873f4d3c4?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=6' }
+        ];
+
+        let cart = [];
+        const el = id => document.getElementById(id);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', ()=>{
+            el('year').textContent = new Date().getFullYear();
+            renderProducts(PRODUCTS);
+            updateCartUI();
+            // search toggle for small screens
+            el('search-toggle').addEventListener('click', ()=> {
+                document.getElementById('search').focus();
+            });
+            el('open-cart').addEventListener('click', openCart);
+            el('order-form').addEventListener('submit', handleOrder);
+            el('contact-form').addEventListener('submit', handleContact);
+        });
+
+        function renderProducts(list){
+            const grid = el('products-grid');
+            grid.innerHTML = '';
+            list.forEach(p=>{
+                const div = document.createElement('div');
+                div.className = 'card';
+                div.innerHTML = `
+                    <img src="${p.img}" alt="${p.name}">
+                    <h3>${p.name}</h3>
+                    <div class="meta">${p.category === 'frais' ? 'Frais' : 'Secs'} • ${p.type} • ${p.bio ? 'Bio' : 'Non-bio'}</div>
+                    <div class="bottom">
+                        <div>
+                            <div style="font-weight:800">${p.price} FCFA / kg</div>
+                            <div class="pill" style="margin-top:6px">${p.avail === 'disponible' ? 'En stock' : 'Rupture'}</div>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+                            <input type="number" min="1" value="1" style="width:80px;padding:6px;border-radius:8px;border:1px solid #e6e6e6" id="qty-${p.id}">
+                            <button class="btn" ${p.avail !== 'disponible' ? 'disabled' : ''} onclick="addToCart(${p.id})">Ajouter au panier</button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        function applyFilters(){
+            const cat = el('filter-category').value;
+            const status = el('filter-status').value;
+            const bio = el('filter-bio').checked;
+            const search = el('search').value.trim().toLowerCase();
+            let out = PRODUCTS.filter(p=>{
+                if(cat && p.type !== cat) return false;
+                if(status && p.avail !== status) return false;
+                if(bio && !p.bio) return false;
+                if(search && !(p.name.toLowerCase().includes(search) || p.type.includes(search))) return false;
+                return true;
+            });
+            renderProducts(out);
+        }
+
+        function resetFilters(){
+            el('filter-category').value = '';
+            el('filter-status').value = '';
+            el('filter-bio').checked = false;
+            el('search').value = '';
+            renderProducts(PRODUCTS);
+        }
+
+        function addToCart(id){
+            const qty = parseInt(document.getElementById('qty-'+id).value) || 1;
+            const prod = PRODUCTS.find(p=>p.id===id);
+            if(!prod) return;
+            const existing = cart.find(i=>i.id===id);
+            if(existing) existing.qty += qty;
+            else cart.push({ id:prod.id, name:prod.name, price:prod.price, qty });
+            updateCartUI();
+            showModal('Produit ajouté', `<p>${prod.name} x ${qty} ajouté au panier.</p>`);
+        }
+
+        function updateCartUI(){
+            el('cart-count').textContent = cart.reduce((s,i)=>s+i.qty,0);
+            el('cart-list').innerHTML = cart.length ? cart.map(i=>`<div style="display:flex;justify-content:space-between"><div>${i.name} x ${i.qty}</div><div>${i.price * i.qty} FCFA</div></div>`).join('') : '<div class="small" style="color:var(--muted)">Votre panier est vide.</div>';
+            el('order-items').innerHTML = el('cart-list').innerHTML;
+            el('cart-total').textContent = cart.reduce((s,i)=>s+i.price*i.qty,0);
+        }
+
+        function openCart(){
+            const body = cart.length ? cart.map(i=>`<div style="display:flex;justify-content:space-between;padding:6px 0">${i.name} x ${i.qty}<strong>${i.price*i.qty} FCFA</strong></div>`).join('') : '<div class="small" style="color:var(--muted)">Panier vide</div>';
+            showModal('Votre panier', body + `<div style="margin-top:12px"><strong>Total:</strong> ${el('cart-total').textContent} FCFA</div>`);
+        }
+
+        function checkout(){
+            if(cart.length === 0){ alert('Le panier est vide.'); return; }
+            document.querySelector('#commander').scrollIntoView({behavior:'smooth'});
+        }
+
+        function handleOrder(e){
+            e.preventDefault();
+            const f = new FormData(e.target);
+            if(cart.length === 0){ alert('Votre panier est vide. Ajoutez des produits avant de commander.'); return; }
+            const order = {
+                nom: f.get('nom'),
+                phone: f.get('phone'),
+                adresse: f.get('adresse'),
+                paiement: f.get('paiement'),
+                items: cart.slice(),
+                total: el('cart-total').textContent
+            };
+            // Simulate immediate confirmation (no backend)
+            el('order-feedback').textContent = 'Merci pour votre commande ! Votre panier est en route.';
+            console.log('Commande simulée :', order);
+            cart = [];
+            updateCartUI();
+            e.target.reset();
+            setTimeout(()=>el('order-feedback').textContent = '', 8000);
+        }
+
+        function handleContact(e){
+            e.preventDefault();
+            const f = new FormData(e.target);
+            // Simulate sending
+            showModal('Message envoyé', `<p>Merci ${f.get('nom')}, nous avons reçu votre message.</p>`);
+            e.target.reset();
+        }
+
+        // Modal helpers
+        function showModal(title, html){
+            el('modal-title').textContent = title;
+            el('modal-body').innerHTML = html;
+            const m = el('modal');
+            m.style.display = 'flex';
+            m.setAttribute('aria-hidden','false');
+        }
+        function closeModal(){ const m = el('modal'); m.style.display='none'; m.setAttribute('aria-hidden','true'); }
+
+        // Subscribe
+        function subscribe(){
+            const email = el('news-email').value.trim();
+            if(!email) { alert('Entrez un email valid.'); return; }
+            showModal('Abonnement', `<p>Merci! ${email} est abonné(e) aux nouvelles.</p>`);
+            el('news-email').value = '';
+        }
+
+        // small utility
+        function scrollToSection(id){ const s = document.getElementById(id); if(s) s.scrollIntoView({behavior:'smooth'}); }
+
+        // Close modal on outside click
+        document.getElementById('modal').addEventListener('click', (e)=>{ if(e.target.id==='modal') closeModal(); });
+
+    </script>
+</body>
+</html>
